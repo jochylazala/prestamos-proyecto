@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Administracion de ingresos</title>
+		<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+</head>
+<style>
+		body{
+			margin:0;
+			padding:0;
+			font-family: sans-serif;
+		}
+
+		.menu{
+			background: #2874a6;
+			top:0;
+			width:100%;
+		}
+
+		.menu ul{
+			list-style: none;
+			margin:0;
+			padding: 0;
+		}
+
+		.menu ul li{
+			display: inline-block;
+			padding:20px;
+		}
+
+		.menu ul li a{
+			text-decoration: none;
+			display: block;
+			padding:10px;
+			color:white;
+		}
+
+		.menu ul li:hover{
+			background-color: #2e86c1;
+		}
+
+		.item-r{
+			float: right;
+		}
+
+		.box{
+			position: absolute;
+			top:35%;
+			left:50%;
+			transform: translate(-50%, -50%);
+		}
+
+
+		  	table{
+		  		background-color:white;
+		  		width:50%;
+		  		text-align:center;
+		  		border-collapse: collapse;
+		  	}
+		  	thead{
+		  		background:#2980b9;
+		  		color:white;
+		  	
+		  	}
+
+		  	.capital{
+		  		top:30%;
+		  		left:40%;
+		  	}
+	
+	</style>
+<body>
+	
+
+	<div class="menu">
+		<ul>
+			<li><a href="{{ url_for('inicio')}}"><span class="icon-home3">Inicio</span></a></li>
+			<li><a href="{{ url_for('cliente')}}"><span class="icon-user-plus">Nuevo Cliente</span></a></li>
+			<li><a href="{{ url_for('verclientes')}}"><span class="icon-supervisor_account">Ver Clientes</span></a></li>
+			<li class="item-r"><a href="{{ url_for('logout')}}"><span class="icon-account_circle">Logout</span></a></li>
+			
+		</ul>
+		
+	</div>
+
+	<h2>Registro de Inversiones e Intereses</h2>
+
+	<div class="capital">
+
+		<table class="table table-striped table-hover tabel-bordered table-sm bg-white">
+			<thead>
+				<tr>
+					<td>Capital</td>
+					<td>Ingresos</td>
+					<td>Interes</td>
+					<td>Monto No Saldado</td>
+					<td>Monto Saldado</td>
+
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for row in capital %}
+				
+				<tr>
+					<td>{{ row.0 }}</td>
+					<td>{{ row.1 }}</td>
+					<td>{{ row.2 }}</td>
+					<td>{{ row.3 }}</td>
+					<td>{{ row.4 }}</td>
+					
+				</tr>
+				{% endfor %}
+			</tbody>
+			
+			
+		</table>
+		
+	</div>
+
+
+		
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</html>

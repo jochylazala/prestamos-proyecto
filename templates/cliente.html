@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nuevo Cliente</title>
+
+</head>
+<style type="text/css">
+	body{
+		margin:0;
+		padding:0;
+		font-family:sans-serif;
+	}
+	.menu{
+		background:#2874a6;
+		top:0;
+		width:100%;
+	}
+	.menu ul{
+		list-style:none;
+		margin:0;
+		padding:0;
+	}
+	.menu ul li{
+		display: inline-block;
+		padding:20px;
+		
+		
+	}
+	.menu ul li a{
+		text-decoration: none;
+		display: block;
+		padding:10px;
+		color:white;
+		font-size:15px;
+	}
+	.menu ul li:hover{
+		background-color:#2e86c1;
+
+	}
+	h2{
+		text-align:center;
+	}
+
+	.form{
+		padding:10px;
+		width:77%;
+		max-width: 500%;
+		margin:auto;
+	}
+	input[type="text"], input[type="date"]{
+		border:0;
+		background:  #f5eef8;
+		margin:20px auto;
+		border:2px solid  #abb2b9;
+		padding:5px 5px;
+		border-radius: 12px;
+		}
+		input[type="submit"]{
+			border-radius: 24px;
+			width:125px;
+			height: 45px;
+			background: #17a589;
+			border:none;
+			color:#fff;
+			cursor:pointer;
+			outline: none;
+		}
+		input[type="submit"]:hover{
+			background: #48c9b0;
+		}
+
+		input[type="button"]{
+			border-radius: 24px;
+			background: #5dade2;
+			width:125px;
+			height: 45px;
+			border:none;
+			cursor: pointer;
+			outline: none
+			color:#fff;
+		}
+		input[type="button"]:hover{
+         	background: #a9cce3;
+
+		}
+</style>
+<body>
+	<div  class="menu">
+		<ul>
+			
+				<li><a href="{{ url_for('inicio')}}">Inico</a></li>
+				<li><a href="{{ url_for('verclientes')}}">Ver Clientes</a></li>
+				<li><a href="{{ url_for('capital')}}">Administracion</a></li>
+
+			
+		</ul>
+		
+	</div>
+
+	<div class="container">
+		<h2>Nuevo Cliente</h2>
+		<form method="POST" class="form">
+			<div class="contedor-inputs">
+				<label for="nombre">Nombre</label>				
+			    <input type="text" name="nombre" style="width:40%;" placeholder="nombre" required="">
+			    <label for="email">Email</label>
+			    <input type="text" name="email" style="width:42%;" placeholder="Correo electronico" required="">
+			    <label for="telefono">Contacto</label>
+			    <input type="text" name="telefono" placeholder="numero de contacto" style="width:25%;" required="">
+			    <label for="cantidad">Cantidad</label>
+			    <input type="text" name="cantidad" id="cantidad" value="0" style="width:25%;" required="">
+			    <label for="fecha">Fecha</label>
+			    <input type="date" name="fecha" style="width:22%;" required="">
+			    <label for="semanas">Semanas</label>
+			    <input type="text" name="semanas" value="13" style="width:17%;" required="">
+			    <label for="semanaspagadas">Semanas Saldadas</label>
+			    <input type="text" name="semanaspagadas" value="0" id="semanaspagadas" style="width:16%;" required="">
+			    <label for="semanasnopagadas">Semanas No Saldadas</label>
+			    <input type="text" name="semanasnopagadas" value="0" id="semanasnopagadas" style="width:19%;" required="">
+			    <label for="pagoporsemanas">Pago Por Semanas</label>
+			    <input type="text" name="pagoporsemanas" id="pagoporsemanas" value="0" style="width:17%;" required="">
+			    <label for="cantidadpagada">Cantidad Saldada</label>
+			    <input type="text" name="cantidadpagada" value="0" id="cantidadpagada" style="width:17%;" required="">
+			    <label for="cantidadnopagada">Cantidad No Saldada</label>
+			    <input type="text" name="cantidadnopagada" id="cantidadnopagada" value="0" style="width:13%" required="">
+			    <label for="totalpagar">Total a Pagar</label>
+      			<input type="text" name="totalpagar" id="totalpagar" value="0" style="width:18%" required="">
+
+			    
+			</div>
+			<input type="submit" class="btn btn-primary" value="Guardar">
+			<input type="button" name="btn1" value="Calcular Pago" onclick="calcular()">	
+			
+		</form>
+		
+	</div>
+
+
+
+</body>
+
+
+<script type="text/javascript">
+	function calcular(){
+		  valor = document.getElementById("cantidad").value; /*variable para almacenar la cantidad prestada*/
+		  console.log(valor);
+
+		  var resultado = valor * 0.10;/*variable para el porciento de pago semanal*/
+		  document.getElementById('pagoporsemanas').value = resultado;
+		  /*variable para el total a pagar */
+		  total = resultado * 13;
+		  document.getElementById('totalpagar').value = total;
+
+		  /*variable para semanas no saldadas*/
+		  semanasaldadas = document.getElementById('semanaspagadas').value;
+		  document.getElementById('semanasnopagadas').value = 13 - semanasaldadas;
+
+		  /*codigo para la cantidad saldada*/
+		  pagada = semanasaldadas * resultado;
+		  document.getElementById('cantidadpagada').value = pagada;
+
+		  //codigo para la cantidad no pagada
+		  document.getElementById('cantidadnopagada').value = total - pagada; 
+		  
+
+
+	}
+
+
+</script>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lista de Clientes</title>
+		  <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+
+		  <style type="text/css">
+		  	body{
+		  		margin:0;
+		  		padding:0;
+		  		font-family:sans-serif;
+		  	}
+		  	.container{
+		  		position: absolute;
+		  		top:20%;
+		  		left:5%;
+
+		  	}
+
+		  	table{
+		  		background-color:white;
+		  		width:90%;
+		  		text-align:center;
+		  		border-collapse: collapse;
+		  	}
+		  	td{
+		  		padding:3px;
+		  	}
+		  	thead{
+		  		background:#2980b9;
+		  		color:white;
+		  	}
+		  
+		
+		.menu{
+			background: #2874a6;
+			top:0;
+			width:100%;
+
+		}
+		
+		.menu ul{
+			list-style:none;
+			margin:0;
+			padding:0;
+
+		}
+
+		.menu ul li{
+			display:inline-block;
+			padding:20px;
+		}
+
+		.menu ul li a{
+			text-decoration: none;
+			display: block;
+			padding:10px;
+			color:white;
+			font-size: 15px;
+		}
+
+		.menu ul li:hover{
+			background: #2e86c1;
+
+		}
+
+
+
+
+
+
+
+		  </style>
+		
+
+</head>
+<body>
+
+	<div class="menu">
+		<ul>
+			<li><a href="{{ url_for('inicio')}}">Inicio</a></li>
+		    <li><a href="{{ url_for('cliente')}}">Nuevo Cliente</a></li>
+		    <li><a href="{{ url_for('capital')}}">Administracion</a></li>
+
+		</ul>
+		
+	</div>
+
+
+	<div class="container">
+		<div class="start-template">
+			<h2>Lista de Clientes</h2>
+			<table class="table table-striped table-hover tabel-bordered table-sm bg-white">
+				<thead>
+					<tr>
+						<td>Nombre Completo</td>
+						<td>Correo</td>
+						<td>Telefono</td>
+						<td>Cantidad</td>
+						<td>Fecha</td>
+						<td>Semanas</td>
+						<td>Semanas pagadas</td>
+						<td>Semanas No pagadas</td>
+						<td>Pago por Semanas</td>
+						<td>Cantidad Pagada</td>
+						<td>Cantidad No Pagada</td>
+						<td>Total a Pagar</td>
+						<td>Accion</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in clientes %}
+					<tr>
+						<td>{{ row.1 }}</td>
+						<td>{{ row.2 }}</td>
+						<td>{{ row.3 }}</td>
+						<td>{{ row.4 }}</td>
+						<td>{{ row.5 }}</td>
+						<td>{{ row.6 }}</td>
+						<td>{{ row.7 }}</td>
+						<td>{{ row.8 }}</td>
+						<td>{{ row.9 }}</td>
+						<td>{{ row.10 }}</td>
+						<td>{{ row.11 }}</td>
+						<td>{{ row.12 }}</td>
+						<td>
+							<a href="/edit/{{row.0}}" class="btn btn-secondary">Editar</a>
+							<a href="/delete/{{row.0}}" class="btn btn-danger btn-delete">Elimiar</a>
+						</td>
+
+
+					</tr>
+					{% else %}
+					<tr>
+						<td colspan="2">No hay clientes registrado</td>
+					</tr>
+					{% endfor %}			
+				</tbody>
+				
+			</table>			
+		</div>
+		
+	</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+</html>

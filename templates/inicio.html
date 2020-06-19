@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inicio</title>
+		    
+	<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<link rel="stylesheet" href="https://i.icomoon.io/public/temp/cdf57e93ef/UntitledProject/style.css">
+
+	<style>
+		body{
+			margin:0;
+			padding:0;
+			font-family: sans-serif;
+
+		}
+
+		.menu{
+			background:#2874a6;
+			top:0;
+			width:100%;
+		}
+		
+		.menu ul{
+			list-style:none;
+			margin:0;
+			padding:0;
+		}
+
+		.menu ul li{
+			display: inline-block;
+			padding:20px;
+		}
+
+		.menu ul li a{
+			text-decoration: none;
+			display: block;
+			padding:10px;
+			color:white;
+			font-size:15px;
+		}
+
+		.menu ul li:hover{
+			background-color:#2e86c1;
+		}
+
+		.item-r{
+			float: right;
+		}
+
+		.box{
+			position: absolute;
+			top:35%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+		input{
+			position: relative;
+			display:inline-block;
+			font-size: 15px;
+			box-sizing: border-box;
+			transition: .5s;
+		}
+		input[type="text"]{
+			background: # #a3e4d7;
+			height: 50px;
+			border:none;
+			outline:none;
+			padding: 0 25px;
+			border-radius: 25px 0 0 25px;
+		}
+
+		input[type="submit"]{
+			position: relative;
+			left:-5px;
+			border-radius: 0 25px 25px 0;
+			width: 150px;
+			height: 50px;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			background: #17a589;
+			color:#fff;
+		}
+		input[type="submit"]:hover{
+			background:#48c9b0; 
+		}
+
+		.cliente{
+			position: absolute;
+			top:50%;
+			left: 5%;
+		}
+
+		table{
+			background-color: white;
+			width:90%;
+			text-align:center;
+			border-collapse: collapse;
+		}
+
+		td{
+			
+			padding:3px;
+		}
+
+		thead{
+			background: #2980b9;
+			color:white;
+		}
+
+		tbody tr{
+			background-color: #aed6f1;
+
+		}			
+
+	</style>
+
+</head>
+<body>
+	<div class="menu">
+		<ul>
+			<li><a href="{{ url_for('inicio')}}"><span class="icon-home3">Inicio</span></a></li>
+			<li><a href="{{ url_for('cliente')}}"><span class="icon-user-plus">Nuevo Cliente</span></a></li>
+			<li><a href="{{ url_for('verclientes')}}"><span class="icon-supervisor_account">Ver Clientes</span></a></li>
+			<li><a href="{{ url_for('capital')}}">Administracion</a></li>
+			<li class="item-r"><a href="{{ url_for('logout')}}"><span class="icon-account_circle">Logout</span></a></li>
+			
+		</ul>
+		
+	</div>
+		
+
+
+	<div class="box">
+		<form method="post">
+			<input type="text" name="nombre" placeholder="Buscar cliente...">
+			<input type="submit" value="Buscar">
+			
+		</form>
+		
+	</div>
+
+	<div class="cliente">
+		<table class="table table-striped table-hover tabel-bordered table-sm bg-white">
+			<thead>
+				<tr>
+					<td>Nombre</td>
+					<td>Correo</td>
+					<td>Telefono</td>
+					<td>Cantidad</td>
+					<td>Fecha</td>
+					<td>Semanas</td>
+					<td>Semanas Pagadas</td>
+					<td>Semanas no Pagadas</td>
+					<td>Pago por Semanas</td>
+					<td>Cantidad Pagada</td>
+					<td>Cantidad no Pagada</td>
+					<td>Total a Pagar</td>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in data %}
+				<tr>
+					<td>{{ row.1 }}</td>
+					<td>{{ row.2 }}</td>
+					<td>{{ row.3 }}</td>
+					<td>{{ row.4 }}</td>
+					<td>{{ row.5 }}</td>
+					<td>{{ row.6 }}</td>
+					<td>{{ row.7 }}</td>
+					<td>{{ row.8 }}</td>
+					<td>{{ row.9 }}</td>
+					<td>{{ row.10 }}</td>
+					<td>{{ row.11 }}</td>
+					<td>{{ row.12 }}</td>
+
+				</tr>
+			</tbody>
+			{% endfor %}
+			
+		</table>
+		
+	</div>
+
+
+</body>
+</html>
